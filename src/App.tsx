@@ -279,21 +279,21 @@ function MarketplacePage({
       </div>
       <div className="filters">
         <input value={search} onChange={(event) => onSearchChange(event.target.value)} placeholder="Search marketplace" />
-        <select value={selectedCategory} onChange={(event) => onCategoryChange(event.target.value)}>
+        <select aria-label="Category filter" value={selectedCategory} onChange={(event) => onCategoryChange(event.target.value)}>
           {categories.map((category) => (
             <option key={category} value={category}>
               {category}
             </option>
           ))}
         </select>
-        <select value={selectedCondition} onChange={(event) => onConditionChange(event.target.value)}>
+        <select aria-label="Condition filter" value={selectedCondition} onChange={(event) => onConditionChange(event.target.value)}>
           {['All', 'Excellent', 'Very Good', 'Good', 'Fair'].map((condition) => (
             <option key={condition} value={condition}>
               {condition}
             </option>
           ))}
         </select>
-        <select value={sortBy} onChange={(event) => onSortChange(event.target.value)}>
+        <select aria-label="Sort by" value={sortBy} onChange={(event) => onSortChange(event.target.value)}>
           <option value="newest">Newest</option>
           <option value="price">Price: Low to High</option>
           <option value="price-desc">Price: High to Low</option>
@@ -375,7 +375,7 @@ function CommunityPage({
       </div>
       <div className="filters">
         <input value={search} onChange={(event) => onSearchChange(event.target.value)} placeholder="Search posts" />
-        <select value={selectedCategory} onChange={(event) => onCategoryChange(event.target.value)}>
+        <select aria-label="Category filter" value={selectedCategory} onChange={(event) => onCategoryChange(event.target.value)}>
           {categories.map((category) => (
             <option key={category} value={category}>
               {category}
@@ -459,7 +459,7 @@ function CollectionPage({
       </div>
       <div className="filters">
         <input value={search} onChange={(event) => onSearchChange(event.target.value)} placeholder="Search collection" />
-        <select value={activeCollection} onChange={(event) => onCollectionChange(event.target.value as CollectionType | 'all')}>
+        <select aria-label="Collection filter" value={activeCollection} onChange={(event) => onCollectionChange(event.target.value as CollectionType | 'all')}>
           {collections.map((collection) => (
             <option key={collection.value} value={collection.value}>
               {collection.label}
@@ -489,7 +489,7 @@ function CollectionPage({
                 <span>Est. ${item.estimatedValue}</span>
               </div>
               <div className="card-actions">
-                <select value={item.collection} onChange={(event) => onMoveItem(item.id, event.target.value as CollectionType)}>
+                <select aria-label="Change collection" value={item.collection} onChange={(event) => onMoveItem(item.id, event.target.value as CollectionType)}>
                   <option value="owned">Owned</option>
                   <option value="wishlist">Wishlist</option>
                   <option value="selling">Selling</option>
