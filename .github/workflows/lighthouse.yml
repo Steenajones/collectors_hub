@@ -18,12 +18,20 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Serve dist and run Lighthouse
-        uses: treosh/lighthouse-ci-action@v2
+      - name: Serve `dist/` and wait
+        run: |
+          npx http-server ./dist -p 8080 --silent &
+          for i in {1..15}; do
+            if curl -sSf http://127.0.0.1:8080 >/dev/null; then
+              echo "server up"; break
+            fi
+            echo "waiting for server... ($i)"; sleep 1
+          done
+      - name: Run Lighthouse (accessibility)
+        run: |
+          npx -y lighthouse "http://127.0.0.1:8080" --only-categories=accessibility --output=json --output-path=lh-report-ci.json --chrome-flags="--no-sandbox --headless"
+      - name: Upload Lighthouse report
+        uses: actions/upload-artifact@v4
         with:
-          urls: |
-            https://steenajones.github.io/collectors_hub/
-          chromeFlags: '--no-sandbox --headless'
-          onlyCategories: accessibility
-          output: json
-          outputPath: lh-report-ci.json
+          name: lh-report-ci
+          path: lh-report-ci.json
