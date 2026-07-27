@@ -1,0 +1,29 @@
+name: Lighthouse accessibility
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Serve dist and run Lighthouse
+        uses: treosh/lighthouse-ci-action@v2
+        with:
+          urls: |
+            https://steenajones.github.io/collectors_hub/
+          chromeFlags: '--no-sandbox --headless'
+          onlyCategories: accessibility
+          output: json
+          outputPath: lh-report-ci.json
