@@ -507,11 +507,7 @@ function CollectionPage({
 }
 
 function App() {
-  return (
-    <BrowserRouter>
-      <AppContent />
-    </BrowserRouter>
-  )
+  return <AppContent />
 }
 
 export default App
