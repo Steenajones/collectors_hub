@@ -16,6 +16,22 @@ body {
   margin: 0;
   min-height: 100vh;
   background: linear-gradient(135deg, #fdf7ef, #f3ebdf);
+  color: #111827;
+}
+
+body,
+button,
+input,
+select,
+textarea,
+optgroup,
+option,
+a,
+label,
+span,
+strong,
+small {
+  color: #111827;
 }
 
 button,
@@ -64,19 +80,68 @@ h2,
 h3,
 p {
   margin: 0;
+  color: #0f172a;
 }
 
 .topbar h1 {
   font-size: clamp(1.75rem, 2.3vw, 2.5rem);
   line-height: 1.15;
-  color: #0f172a;
+  color: #0b1120;
   font-weight: 800;
+}
+
+.sidebar-card h2,
+.page-header h2,
+.page-header .eyebrow,
+.card-body h3,
+.card-body p,
+.sidebar-card__footer p,
+.meta-row,
+.card-topline,
+.filters input,
+.filters select,
+.card-actions select,
+.nav-links a {
+  color: #0f172a !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color: #0f172a;
+    background: #f4f1ea;
+  }
+  h1,
+  h2,
+  h3,
+  p,
+  .sidebar-card h2,
+  .page-header h2,
+  .page-header .eyebrow,
+  .card-body h3,
+  .card-body p,
+  .sidebar-card__footer p,
+  .meta-row,
+  .card-topline,
+  .filters input,
+  .filters select,
+  .card-actions select,
+  .nav-links a {
+    color: #0f172a !important;
+  }
 }
 
 .nav-links {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #111827;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-weight: 600;
 }
 
 .nav-links a {
@@ -140,7 +205,7 @@ p {
 
 .sidebar-card__footer {
   margin-top: 16px;
-  color: #374151;
+  color: #111827;
   line-height: 1.6;
 }
 
@@ -150,6 +215,12 @@ p {
   align-items: center;
   margin-bottom: 16px;
   gap: 16px;
+}
+
+.page-header .eyebrow,
+.page-header h2,
+.page-header p {
+  color: #111827;
 }
 
 .filters {
@@ -218,11 +289,19 @@ p {
 .card-topline {
   display: flex;
   justify-content: space-between;
-  color: #b4542a;
+  color: #0f172a;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-weight: 700;
+}
+
+.card-body h3,
+.card-body p,
+.card-body span,
+.card-body strong,
+.card-body div {
+  color: #111827;
 }
 
 .meta-row {
