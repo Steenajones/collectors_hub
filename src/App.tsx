@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { BrowserRouter, Link, NavLink, Route, Routes } from 'react-router-dom'
+import { Link, NavLink, Route, Routes } from 'react-router-dom'
 import './App.css'
 import { communityPosts as initialCommunityPosts, marketplaceItems as initialMarketplaceItems } from './data'
 import type { CommunityPost, MarketplaceItem } from './types'
