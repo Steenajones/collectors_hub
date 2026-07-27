@@ -1,30 +1,45 @@
 # Collector's Hub
 
-A responsive React + TypeScript app for discovering collectible items, exploring a community feed, and managing a personal collection.
+Collector's Hub is a responsive React + TypeScript web app for discovering collectible marketplace listings, browsing community posts, and managing a personal collection.
 
-## Features
-- Marketplace with search, category/condition filters, sorting, and duplicate protection when adding items to collection
-- Community feed with searchable posts, likes, saves, and post cards
-- My Collection with owned, wishlist, and selling views, search, filtering, moving between collections, and removal
-- Local persistence so collection and feed preferences remain after refresh
+## Quick Start
+Clone the repo and run locally:
 
-## Setup
-1. Install dependencies: `npm install`
-2. Start the dev server: `npm run dev`
-3. Open the local Vite URL shown in the terminal
+```bash
+git clone https://github.com/Steenajones/collectors_hub.git
+cd collectors_hub
+npm install
+npm run dev
+```
+
+Open the Vite URL shown in the terminal (usually `http://localhost:5173`).
+
+## What I built
+- Marketplace: search, category & condition filters, sorting, and listing detail actions.
+- Community Feed: browse posts, like/save, and search the feed.
+- My Collection: `Owned`, `Wishlist`, and `Selling` with add, move, remove, search, and filters.
+
+UX and robustness highlights:
+- Duplicate-item prevention when adding to a collection
+- Helpful empty states and loading indicators
+- Local persistence using Local Storage
+- Responsive layout for mobile, tablet, and desktop
 
 ## Scripts
-- `npm run dev` - start development mode
-- `npm run build` - build for production
-- `npx vitest run` - run test suite
+- `npm run dev` — start development server
+- `npm run build` — production build
+- `npx vitest run` — run tests
 
-## Assumptions
-- The app uses mock data rather than a live backend
-- Collection actions are intentionally local and client-side for the assignment scope
+## Assumptions and Notes
+- Uses mock data in `src/data.ts` (no backend required).
+- Images are remote Unsplash URLs; internet access required to load them.
+- No authentication — all data is client-side for the assignment scope.
 
-## Libraries used
-- React
-- TypeScript
-- React Router DOM
-- Vite
-- Vitest
+## Key files
+- `src/App.tsx` — main app and routing
+- `src/data.ts` — mock marketplace items and community posts
+- `src/utils/collection.ts` — collection helpers (add/move/remove)
+- `src/types.ts` — shared TypeScript types
+
+---
+See `SUBMISSION.md` for a ready-to-send submission message and a short demo script.
