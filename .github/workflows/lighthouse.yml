@@ -37,13 +37,21 @@ jobs:
       - name: Run Lighthouse (accessibility)
         run: |
           set -x
-          sudo apt-get update && sudo apt-get install -y chromium-browser chromium || true
-          sudo apt-get install -y curl jq || true
+          sudo apt-get update
+          sudo apt-get install -y chromium-browser chromium curl jq || true
           CHROME_PATH=$(which chromium || which chromium-browser || which google-chrome || true)
           echo "Using chrome: $CHROME_PATH"
-          npx -y lighthouse "http://127.0.0.1:8080" --only-categories=accessibility --output=json --output-path=lh-report-ci.json --chrome-flags="--no-sandbox --headless" ${CHROME_PATH:+--chrome-path=$CHROME_PATH} > lh-output.log 2>&1 || true
-          tail -n +1 lh-output.log | sed -n '1,400p' || true
+          # Run Lighthouse and capture output to a log file. If Lighthouse fails, print a short message
+          # but continue so we can always upload logs for debugging.
+          npx -y lighthouse "http://127.0.0.1:8080" \
+            --only-categories=accessibility \
+            --output=json \
+            --output-path=lh-report-ci.json \
+            --chrome-flags="--no-sandbox --headless" ${CHROME_PATH:+--chrome-path=$CHROME_PATH} > lh-output.log 2>&1 || echo "lighthouse exited with non-zero status, continuing"
+          echo "==== Lighthouse (tail) ===="
+          tail -n 400 lh-output.log || true
       - name: Upload Lighthouse report
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: lh-report-ci
