@@ -18,15 +18,18 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Serve `dist/` and wait
+      - name: Serve `dist/` and wait (python)
         run: |
-          npx http-server ./dist -p 8080 --silent &
-          for i in {1..15}; do
+          # Use Python's simple HTTP server for reliability on the runner
+          python3 -m http.server 8080 --directory ./dist > server.log 2>&1 &
+          for i in {1..20}; do
             if curl -sSf http://127.0.0.1:8080 >/dev/null; then
               echo "server up"; break
             fi
             echo "waiting for server... ($i)"; sleep 1
           done
+          echo "==== server.log (tail) ===="
+          tail -n 200 server.log || true
       - name: Debug environment
         run: |
           echo "Node version:"; node -v || true
