@@ -29,7 +29,8 @@ jobs:
           done
       - name: Run Lighthouse (accessibility)
         run: |
-          npx -y lighthouse "http://127.0.0.1:8080" --only-categories=accessibility --output=json --output-path=lh-report-ci.json --chrome-flags="--no-sandbox --headless"
+          sudo apt-get update && sudo apt-get install -y chromium-browser || true
+          npx -y lighthouse "http://127.0.0.1:8080" --only-categories=accessibility --output=json --output-path=lh-report-ci.json --chrome-flags="--no-sandbox --headless" --chrome-path=/usr/bin/chromium-browser
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v4
         with:
