@@ -5,7 +5,8 @@ Hello,
 I completed the Collector's Hub internship assignment.
 
 - GitHub repository: https://github.com/Steenajones/collectors_hub
-- Demo video: <PASTE_YOUR_VIDEO_LINK_HERE>
+- Demo video: https://drive.google.com/file/d/1nL61IIlZw_cbjiCH-5deHCM04molH0EI/view?usp=sharing
+- Live demo: https://steenajones.github.io/collectors_hub
 
 Summary:
 Collector's Hub is a responsive React + TypeScript app that includes a Marketplace, Community Feed, and My Collection. Features include search, filters, sorting, duplicate protection when adding to collections, local persistence, and responsive design.

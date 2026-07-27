@@ -6,7 +6,7 @@ Please find my Collector's Hub assignment below.
 
 - GitHub repository: https://github.com/Steenajones/collectors_hub
 - Demo video: https://drive.google.com/file/d/1nL61IIlZw_cbjiCH-5deHCM04molH0EI/view?usp=sharing
-- Live demo: <optional live URL if deployed>
+- Live demo: https://steenajones.github.io/collectors_hub
 
 Short description:
 Collector's Hub is a responsive React + TypeScript web app for collectors to discover marketplace listings, browse community posts, and manage a personal collection. Features include search, filtering, sorting, duplicate prevention when adding to collections, local persistence, and responsive layouts.
