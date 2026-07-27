@@ -27,12 +27,27 @@ jobs:
             fi
             echo "waiting for server... ($i)"; sleep 1
           done
+      - name: Debug environment
+        run: |
+          echo "Node version:"; node -v || true
+          echo "NPM version:"; npm -v || true
+          echo "Which chromium:"; which chromium || which chromium-browser || which google-chrome || true
+          ls -la /usr/bin | sed -n '1,200p' || true
+          df -h || true
       - name: Run Lighthouse (accessibility)
         run: |
-          sudo apt-get update && sudo apt-get install -y chromium-browser || true
-          npx -y lighthouse "http://127.0.0.1:8080" --only-categories=accessibility --output=json --output-path=lh-report-ci.json --chrome-flags="--no-sandbox --headless" --chrome-path=/usr/bin/chromium-browser
+          set -x
+          sudo apt-get update && sudo apt-get install -y chromium-browser chromium || true
+          sudo apt-get install -y curl jq || true
+          CHROME_PATH=$(which chromium || which chromium-browser || which google-chrome || true)
+          echo "Using chrome: $CHROME_PATH"
+          npx -y lighthouse "http://127.0.0.1:8080" --only-categories=accessibility --output=json --output-path=lh-report-ci.json --chrome-flags="--no-sandbox --headless" ${CHROME_PATH:+--chrome-path=$CHROME_PATH} > lh-output.log 2>&1 || true
+          tail -n +1 lh-output.log | sed -n '1,400p' || true
       - name: Upload Lighthouse report
         uses: actions/upload-artifact@v4
         with:
           name: lh-report-ci
-          path: lh-report-ci.json
+          path: |
+            lh-report-ci.json
+            lh-output.log
+            
